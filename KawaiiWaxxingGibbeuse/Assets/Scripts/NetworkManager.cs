@@ -1,7 +1,7 @@
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
-public class NetworkManager : MonoBehaviour
+public class NetworkManager : MonoBehaviourPunCallbacks
 {
     public int maxPlayers = 10;
     public static NetworkManager instance;
@@ -13,7 +13,13 @@ public class NetworkManager : MonoBehaviour
     }
     void Start()
     {
-        
+        PhotonNetwork.ConnectUsingSettings();
+    }
+    
+    
+    public override void OnConnectedToMaster()
+    {
+        Debug.Log("Connected to Master");
     }
 
     // Update is called once per frame
