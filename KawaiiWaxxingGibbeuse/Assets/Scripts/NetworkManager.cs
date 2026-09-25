@@ -20,6 +20,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public override void OnConnectedToMaster()
     {
         Debug.Log("Connected to Master");
+        PhotonNetwork.JoinLobby();
     }
 
     // Update is called once per frame
