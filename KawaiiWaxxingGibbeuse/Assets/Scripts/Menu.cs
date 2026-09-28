@@ -120,7 +120,7 @@ public class Menu : MonoBehaviourPunCallbacks, ILobbyCallbacks
         PhotonNetwork.CurrentRoom.IsOpen = false;
         PhotonNetwork.CurrentRoom.IsVisible = false;
 
-        NetworkManager.instance.photonView.RPC("ChangeScnee", RpcTarget.All, "Game");
+        NetworkManager.instance.photonView.RPC("ChangeScene", RpcTarget.All, "Game");
     }
 
     public void OnLeaveLobbyButton()
