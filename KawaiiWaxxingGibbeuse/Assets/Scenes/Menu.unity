@@ -743,7 +743,7 @@ GameObject:
   m_Component:
   - component: {fileID: 173975568}
   m_Layer: 5
-  m_Name: Main Menu
+  m_Name: MainScreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3836,7 +3836,7 @@ GameObject:
   - component: {fileID: 1590631170}
   - component: {fileID: 1590631169}
   m_Layer: 5
-  m_Name: StartButton
+  m_Name: StartGameButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

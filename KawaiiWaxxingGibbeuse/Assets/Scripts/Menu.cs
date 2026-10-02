@@ -129,12 +129,12 @@ public class Menu : MonoBehaviourPunCallbacks, ILobbyCallbacks
         SetScreen(mainScreen);
     }
 
-    void UpdateLobbyBrowserUI ()
+    void UpdateLobbyBrowserUI()
     {
         foreach (GameObject button in roomButtons)
             button.SetActive(false);
 
-        for(int x =0; x < roomList.Count; ++x)
+        for (int x = 0; x < roomList.Count; ++x)
         {
             GameObject button = x >= roomButtons.Count ? CreateRoomButton() : roomButtons[x];
             button.SetActive(true);
@@ -171,7 +171,4 @@ public class Menu : MonoBehaviourPunCallbacks, ILobbyCallbacks
     {
         roomList = allRooms;
     }
-
-
-
 }

@@ -1,6 +1,8 @@
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
+using System;
+using System.Collections;
 
 public class PlayerController : MonoBehaviourPun
 {
@@ -13,32 +15,46 @@ public class PlayerController : MonoBehaviourPun
 
     public int id;
     public Player photonPlayer;
+    private int curAttackerId;
+    public int curHP;
+    public int maxHP;
+    public int kills;
+    public bool dead;
+    private bool flashingDamage;
+    public MeshRenderer mr;
+    public PlayerWeapon weapon;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!photonView.IsMine || dead)
+            return;
+
         Move();
 
-        if(Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             TryJump();
         }
+
+        if (Input.GetMouseButtonDown(0))
+            weapon.TryShoot();
     }
 
     void Move()
     {
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
-        
+
         Vector3 dir = (transform.forward * z + transform.right * x) * moveSpeed;
         dir.y = _rb.linearVelocity.y;
-        
+
         _rb.linearVelocity = dir;
     }
 
@@ -58,10 +74,90 @@ public class PlayerController : MonoBehaviourPun
 
         GameManager.instance.players[id - 1] = this;
 
-        if(!photonView.IsMine)
+        if (!photonView.IsMine)
         {
             GetComponentInChildren<Camera>().gameObject.SetActive(false);
             _rb.isKinematic = true;
         }
+
+        else
+        {
+            GameUI.instance.Initialize(this);
+        }
+    }
+
+    [PunRPC]
+    public void TakeDamage(int attackerId, int damage)
+    {
+        if (dead)
+            return;
+
+        curHP -= damage;
+        curAttackerId = attackerId;
+
+        GameUI.instance.UpdateHealthBar();
+
+        photonView.RPC("DamageFlash", RpcTarget.Others);
+
+        if (curHP <= 0)
+            photonView.RPC("Die", RpcTarget.All);
+    }
+
+    [PunRPC]
+    void DamageFlash()
+    {
+        if (flashingDamage)
+            return;
+
+        StartCoroutine(DamageFlashCoroutine());
+
+        IEnumerator DamageFlashCoroutine()
+        {
+            flashingDamage = true;
+            Color defaultColor = mr.material.color;
+            mr.material.color = Color.red;
+
+            yield return new WaitForSeconds(0.05f);
+
+            mr.material.color = defaultColor;
+            flashingDamage = false;
+        }
+    }
+
+    [PunRPC]
+    void Die()
+    {
+        curHP = 0;
+        dead = true;
+
+        GameManager.instance.alivePlayers--;
+
+        if (PhotonNetwork.IsMasterClient)
+            GameManager.instance.CheckWinCondition();
+
+        if(photonView.IsMine)
+        {
+            if (curAttackerId != 0)
+                GameManager.instance.GetPlayer(curAttackerId).photonView.RPC("AddKill", RpcTarget.All);
+
+            GetComponentInChildren<CameraController>().SetAsSpectator();
+
+            _rb.isKinematic = true;
+            transform.position = new Vector3(0, -50, 0);
+        }
+    }
+
+    [PunRPC]
+    public void AddKill()
+    {
+        kills++;
+        GameUI.instance.UpdatePlayerInfoText();
+    }
+
+    [PunRPC]
+    public void Heal(int amountToHeal)
+    {
+        curHP = Mathf.Clamp(curHP + amountToHeal, 0, maxHP);
+        GameUI.instance.UpdateHealthBar();
     }
 }
