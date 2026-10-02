@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviourPun
     {
 
     }
+
     [PunRPC]
     void ImInGame()
     {

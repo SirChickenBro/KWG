@@ -61,7 +61,10 @@ public class ForceField : MonoBehaviour
 
             foreach(PlayerController player in GameManager.instance.players)
             {
-                if (player.dead || !player)
+                if (player == null)
+                    continue;
+
+                if(player.dead)
                     continue;
 
                 if(Vector3.Distance(Vector3.zero, player.transform.position) >= transform.localScale.x)
