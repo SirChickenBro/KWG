@@ -13,6 +13,11 @@ public class PlayerController : MonoBehaviourPun
     [Header("Components")]
     public Rigidbody _rb;
 
+    [Header("Weapons")]
+    public GameObject _gun;
+    public GameObject _shotgun;
+    public GameObject _rifle;
+
     public int id;
     public Player photonPlayer;
     private int curAttackerId;
@@ -24,14 +29,12 @@ public class PlayerController : MonoBehaviourPun
     public MeshRenderer mr;
     public PlayerWeapon weapon;
 
-    public GameObject _gun;
-    public GameObject _shotgun;
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         _gun.SetActive(true);
         _shotgun.SetActive(false);
+        _rifle.SetActive(false);
     }
 
     // Update is called once per frame
@@ -50,16 +53,25 @@ public class PlayerController : MonoBehaviourPun
         if (Input.GetMouseButtonDown(0))
             weapon.TryShoot();
 
-        if (Input.GetKeyDown(KeyCode.Keypad2))
-        {
-            _gun.SetActive(false);
-            _shotgun.SetActive(true);
-        }
-
         if (Input.GetKeyDown(KeyCode.Keypad1))
         {
             _gun.SetActive(true);
             _shotgun.SetActive(false);
+            _rifle.SetActive(false);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Keypad2))
+        {
+            _gun.SetActive(false);
+            _shotgun.SetActive(true);
+            _rifle.SetActive(false);
+        }
+        
+        if (Input.GetKeyDown(KeyCode.Keypad3))
+        {
+            _gun.SetActive(false);
+            _shotgun.SetActive(false);
+            _rifle.SetActive(true);
         }
     }
 
