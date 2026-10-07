@@ -24,10 +24,14 @@ public class PlayerController : MonoBehaviourPun
     public MeshRenderer mr;
     public PlayerWeapon weapon;
 
+    public GameObject _gun;
+    public GameObject _shotgun;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        _gun.SetActive(true);
+        _shotgun.SetActive(false);
     }
 
     // Update is called once per frame
@@ -45,6 +49,18 @@ public class PlayerController : MonoBehaviourPun
 
         if (Input.GetMouseButtonDown(0))
             weapon.TryShoot();
+
+        if (Input.GetKeyDown(KeyCode.Keypad2))
+        {
+            _gun.SetActive(false);
+            _shotgun.SetActive(true);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Keypad1))
+        {
+            _gun.SetActive(true);
+            _shotgun.SetActive(false);
+        }
     }
 
     void Move()
@@ -160,4 +176,5 @@ public class PlayerController : MonoBehaviourPun
         curHP = Mathf.Clamp(curHP + amountToHeal, 0, maxHP);
         GameUI.instance.UpdateHealthBar();
     }
+
 }
