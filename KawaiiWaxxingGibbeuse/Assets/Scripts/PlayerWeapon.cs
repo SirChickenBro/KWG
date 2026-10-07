@@ -52,11 +52,21 @@ public class PlayerWeapon : MonoBehaviourPunCallbacks
         GameUI.instance.UpdateAmmoText();
     }
 
-    //implement weapon changes
-    /*
-    public void SetWeaponBehaviour(string gunType)
-    {
-
-    }
-    */
 }
+
+/*
+public class Pistol
+{
+
+}
+
+public class Shotgun
+{
+
+}
+
+public class Rifle
+{
+
+}
+*/

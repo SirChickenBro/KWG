@@ -6,6 +6,7 @@ using Photon.Pun;
 public class GameUI : MonoBehaviour
 {
     public Slider healthBar;
+    public TextMeshProUGUI healthText;
     public TextMeshProUGUI playerInfoText;
     public TextMeshProUGUI ammoText;
     public TextMeshProUGUI winText;
@@ -26,6 +27,7 @@ public class GameUI : MonoBehaviour
         player = localPlayer;
         healthBar.maxValue = player.maxHP;
         healthBar.value = player.curHP;
+        healthText.text = player.maxHP.ToString();
 
         UpdatePlayerInfoText();
         UpdateAmmoText();
@@ -34,6 +36,7 @@ public class GameUI : MonoBehaviour
     public void UpdateHealthBar()
     {
         healthBar.value = player.curHP;
+        healthText.text = player.curHP.ToString();
     }
 
     public void UpdateAmmoText()
