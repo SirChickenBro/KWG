@@ -2,27 +2,40 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 
-[System.Serializable]
-public class Gun
+
+public abstract class Gun
 {
     public float shootRate;
     public Transform bulletSpawnPos;
+    public abstract void Fire();
 }
 
 [System.Serializable]
 public class Pistol : Gun
 {
+    public override void Fire()
+    {
+
+    }
 }
 
 [System.Serializable]
 public class Shotgun : Gun
 {
     public Transform bulletSpawnPos2;
+    public override void Fire()
+    {
+
+    }
 }
 
 [System.Serializable]
 public class Rifle : Gun
 {
+    public override void Fire()
+    {
+
+    }
 }
 
 public class PlayerWeapon : MonoBehaviourPunCallbacks
