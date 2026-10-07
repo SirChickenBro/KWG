@@ -391,6 +391,37 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &1881786650127982445
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 582498669941250032}
+  m_Layer: 0
+  m_Name: BulletSpawnPos (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &582498669941250032
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1881786650127982445}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.0237, y: -0.0074, z: 1.854}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4600985685629858455}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2632507437928903367
 GameObject:
   m_ObjectHideFlags: 0
@@ -742,6 +773,16 @@ MonoBehaviour:
   shootRate: 0.1
   bulletPrefab: {fileID: 935348177212295708, guid: 2c48c924d5d4c704fb1c33d78c08b97f, type: 3}
   bulletSpawnPos: {fileID: 2470258863882220247}
+  ps:
+    shootRate: 0
+    bulletSpawnPos: {fileID: 0}
+  sg:
+    shootRate: 0
+    bulletSpawnPos: {fileID: 0}
+    bulletSpawnPos2: {fileID: 0}
+  rf:
+    shootRate: 0
+    bulletSpawnPos: {fileID: 0}
 --- !u!1 &3294647815059166768
 GameObject:
   m_ObjectHideFlags: 0
@@ -977,7 +1018,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4600985685629858455
 Transform:
   m_ObjectHideFlags: 0
@@ -996,6 +1037,7 @@ Transform:
   - {fileID: 7329249897500179374}
   - {fileID: 426225093644658170}
   - {fileID: 7463322028483237731}
+  - {fileID: 582498669941250032}
   m_Father: {fileID: 4694628303058299866}
   m_LocalEulerAnglesHint: {x: 0, y: 8.998, z: 0}
 --- !u!1 &4832926347678067936
@@ -1800,7 +1842,7 @@ Transform:
   m_GameObject: {fileID: 9011007629406157475}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.022, y: 0, z: 1.854}
+  m_LocalPosition: {x: -0.0684, y: -0.0074, z: 1.854}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

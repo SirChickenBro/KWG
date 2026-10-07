@@ -2,6 +2,29 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 
+[System.Serializable]
+public class Gun
+{
+    public float shootRate;
+    public Transform bulletSpawnPos;
+}
+
+[System.Serializable]
+public class Pistol : Gun
+{
+}
+
+[System.Serializable]
+public class Shotgun : Gun
+{
+    public Transform bulletSpawnPos2;
+}
+
+[System.Serializable]
+public class Rifle : Gun
+{
+}
+
 public class PlayerWeapon : MonoBehaviourPunCallbacks
 {
     [Header("Stats")]
@@ -14,6 +37,10 @@ public class PlayerWeapon : MonoBehaviourPunCallbacks
     public GameObject bulletPrefab;
     public Transform bulletSpawnPos;
     private PlayerController player;
+
+    public Pistol ps;
+    public Shotgun sg;
+    public Rifle rf;
     
     void Awake()
     {
@@ -54,19 +81,5 @@ public class PlayerWeapon : MonoBehaviourPunCallbacks
 
 }
 
-/*
-public class Pistol
-{
 
-}
 
-public class Shotgun
-{
-
-}
-
-public class Rifle
-{
-
-}
-*/
