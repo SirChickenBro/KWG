@@ -66,12 +66,20 @@ public class PlayerWeapon : MonoBehaviourPunCallbacks
         
         if(activeGun=="Shotgun")
         {
-            if (curAmmo <= 0 || Time.time - lastShootTime < sg.shootRate)
+            if (curAmmo <= 5 || Time.time - lastShootTime < sg.shootRate)
                 return;
 
-            curAmmo-=2;
+            curAmmo-=6;
             lastShootTime = Time.time;
 
+            player.photonView.RPC("SpawnBullet", RpcTarget.All, sg.bulletSpawnPos.transform.position,
+                Camera.main.transform.forward);
+            player.photonView.RPC("SpawnBullet", RpcTarget.All, sg.bulletSpawnPos2.transform.position,
+                Camera.main.transform.forward);
+            player.photonView.RPC("SpawnBullet", RpcTarget.All, sg.bulletSpawnPos.transform.position,
+                Camera.main.transform.forward);
+            player.photonView.RPC("SpawnBullet", RpcTarget.All, sg.bulletSpawnPos2.transform.position,
+                Camera.main.transform.forward);
             player.photonView.RPC("SpawnBullet", RpcTarget.All, sg.bulletSpawnPos.transform.position,
                 Camera.main.transform.forward);
             player.photonView.RPC("SpawnBullet", RpcTarget.All, sg.bulletSpawnPos2.transform.position,
