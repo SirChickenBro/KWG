@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviourPun
     public Rigidbody _rb;
 
     [Header("Weapons")]
-    public GameObject _gun;
+    public GameObject _pistol;
     public GameObject _shotgun;
     public GameObject _rifle;
 
@@ -29,10 +29,13 @@ public class PlayerController : MonoBehaviourPun
     public MeshRenderer mr;
     public PlayerWeapon weapon;
 
+    private string activeGun;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        _gun.SetActive(true);
+        _pistol.SetActive(true);
+        activeGun = "Pistol";
         _shotgun.SetActive(false);
         _rifle.SetActive(false);
     }
@@ -50,29 +53,36 @@ public class PlayerController : MonoBehaviourPun
             TryJump();
         }
 
-        if (Input.GetMouseButtonDown(0))
-            weapon.TryShoot();
-
         if (Input.GetKeyDown(KeyCode.Keypad1))
         {
-            _gun.SetActive(true);
+            _pistol.SetActive(true);
+            activeGun = "Pistol";
+
             _shotgun.SetActive(false);
             _rifle.SetActive(false);
         }
 
         if (Input.GetKeyDown(KeyCode.Keypad2))
         {
-            _gun.SetActive(false);
+            
             _shotgun.SetActive(true);
+            activeGun = "Shotgun";
+
             _rifle.SetActive(false);
+            _pistol.SetActive(false);
         }
-        
+
         if (Input.GetKeyDown(KeyCode.Keypad3))
         {
-            _gun.SetActive(false);
-            _shotgun.SetActive(false);
             _rifle.SetActive(true);
+            activeGun = "Rifle";
+
+            _pistol.SetActive(false);
+            _shotgun.SetActive(false);
         }
+
+        if (Input.GetMouseButtonDown(0))
+            weapon.TryShoot(activeGun);
     }
 
     void Move()

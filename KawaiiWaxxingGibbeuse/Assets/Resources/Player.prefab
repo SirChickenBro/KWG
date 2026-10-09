@@ -705,7 +705,7 @@ MonoBehaviour:
   moveSpeed: 10
   jumpForce: 5
   _rb: {fileID: 6927759358648528508}
-  _gun: {fileID: 7057610669753120336}
+  _pistol: {fileID: 7057610669753120336}
   _shotgun: {fileID: 4591976556155670695}
   _rifle: {fileID: 3294647815059166768}
   id: 0
@@ -770,19 +770,17 @@ MonoBehaviour:
   curAmmo: 25
   maxAmmo: 25
   bulletSpeed: 50
-  shootRate: 0.1
   bulletPrefab: {fileID: 935348177212295708, guid: 2c48c924d5d4c704fb1c33d78c08b97f, type: 3}
-  bulletSpawnPos: {fileID: 2470258863882220247}
   ps:
-    shootRate: 0
-    bulletSpawnPos: {fileID: 0}
+    shootRate: 0.2
+    bulletSpawnPos: {fileID: 2470258863882220247}
   sg:
-    shootRate: 0
-    bulletSpawnPos: {fileID: 0}
-    bulletSpawnPos2: {fileID: 0}
+    shootRate: 0.8
+    bulletSpawnPos: {fileID: 7463322028483237731}
+    bulletSpawnPos2: {fileID: 582498669941250032}
   rf:
-    shootRate: 0
-    bulletSpawnPos: {fileID: 0}
+    shootRate: 0.05
+    bulletSpawnPos: {fileID: 8435128302673691007}
 --- !u!1 &3294647815059166768
 GameObject:
   m_ObjectHideFlags: 0
@@ -815,8 +813,8 @@ Transform:
   - {fileID: 2919183755089558997}
   - {fileID: 3996535032195572219}
   - {fileID: 5104391981637459021}
-  - {fileID: 3795446051007005037}
   - {fileID: 9030834748523878832}
+  - {fileID: 3795446051007005037}
   - {fileID: 1292719119729558154}
   - {fileID: 4358467931065810610}
   - {fileID: 8435128302673691007}
@@ -1018,7 +1016,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4600985685629858455
 Transform:
   m_ObjectHideFlags: 0
