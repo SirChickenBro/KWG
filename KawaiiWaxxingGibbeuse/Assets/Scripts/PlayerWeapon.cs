@@ -8,10 +8,11 @@ using System.Collections.Generic;
 public abstract class Gun
 {
     public float shootRate;
-    public Transform bulletSpawnPos;
     public int curAmmo;
     public int maxAmmo;
-    public int reserveAmmo;
+    public int magSize;
+
+    public Transform bulletSpawnPos;
 }
 
 [System.Serializable]
@@ -66,19 +67,28 @@ public class PlayerWeapon : MonoBehaviourPunCallbacks
             player.photonView.RPC("SpawnBullet", RpcTarget.All, ps.bulletSpawnPos.transform.position,
                 Camera.main.transform.forward);
         }
-        
-        if(activeGun=="Shotgun")
+
+        if (activeGun == "Shotgun")
         {
             if (sg.curAmmo < 2 || Time.time - lastShootTime < sg.shootRate)
                 return;
 
-            sg.curAmmo-=2;
+            sg.curAmmo -= 2;
             lastShootTime = Time.time;
 
             player.photonView.RPC("SpawnBullet", RpcTarget.All, sg.bulletSpawnPos.transform.position,
-                Camera.main.transform.forward);
+                 Camera.main.transform.forward);
             player.photonView.RPC("SpawnBullet", RpcTarget.All, sg.bulletSpawnPos2.transform.position,
                 Camera.main.transform.forward);
+            player.photonView.RPC("SpawnBullet", RpcTarget.All, sg.bulletSpawnPos.transform.position,
+                 Camera.main.transform.forward);
+            player.photonView.RPC("SpawnBullet", RpcTarget.All, sg.bulletSpawnPos2.transform.position,
+                Camera.main.transform.forward);
+            player.photonView.RPC("SpawnBullet", RpcTarget.All, sg.bulletSpawnPos.transform.position,
+                 Camera.main.transform.forward);
+            player.photonView.RPC("SpawnBullet", RpcTarget.All, sg.bulletSpawnPos2.transform.position,
+                Camera.main.transform.forward);
+
         }
 
         if (activeGun == "Rifle")
@@ -99,6 +109,7 @@ public class PlayerWeapon : MonoBehaviourPunCallbacks
     [PunRPC]
     void SpawnBullet(Vector3 pos, Vector3 dir)
     {
+
         GameObject bulletObj = Instantiate(bulletPrefab, pos, Quaternion.identity);
         bulletObj.transform.forward = dir;
 

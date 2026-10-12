@@ -34,10 +34,12 @@ public class PlayerController : MonoBehaviourPun
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        _pistol.SetActive(true);
-        activeGun = "Pistol";
         _shotgun.SetActive(false);
         _rifle.SetActive(false);
+
+        _pistol.SetActive(true);
+        activeGun = "Pistol";
+        GameUI.instance.UpdateAmmoText(activeGun);
     }
 
     // Update is called once per frame
@@ -53,7 +55,7 @@ public class PlayerController : MonoBehaviourPun
             TryJump();
         }
 
-        if (Input.GetKeyDown(KeyCode.Keypad1))
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             _shotgun.SetActive(false);
             _rifle.SetActive(false);
@@ -63,7 +65,7 @@ public class PlayerController : MonoBehaviourPun
             GameUI.instance.UpdateAmmoText(activeGun);
         }
 
-        if (Input.GetKeyDown(KeyCode.Keypad2))
+        if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             _rifle.SetActive(false);
             _pistol.SetActive(false);
@@ -73,7 +75,7 @@ public class PlayerController : MonoBehaviourPun
             GameUI.instance.UpdateAmmoText(activeGun);
         }
 
-        if (Input.GetKeyDown(KeyCode.Keypad3))
+        if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             _pistol.SetActive(false);
             _shotgun.SetActive(false);
