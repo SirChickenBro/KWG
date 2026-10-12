@@ -69,7 +69,7 @@ public class PlayerWeapon : MonoBehaviourPunCallbacks
         
         if(activeGun=="Shotgun")
         {
-            if (sg.curAmmo <= 2 || Time.time - lastShootTime < sg.shootRate)
+            if (sg.curAmmo < 2 || Time.time - lastShootTime < sg.shootRate)
                 return;
 
             sg.curAmmo-=2;

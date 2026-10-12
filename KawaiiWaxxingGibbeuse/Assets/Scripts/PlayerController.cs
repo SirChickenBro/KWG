@@ -171,6 +171,7 @@ public class PlayerController : MonoBehaviourPun
         dead = true;
 
         GameManager.instance.alivePlayers--;
+        GameUI.instance.UpdatePlayerInfoText();
 
         if (PhotonNetwork.IsMasterClient)
             GameManager.instance.CheckWinCondition();

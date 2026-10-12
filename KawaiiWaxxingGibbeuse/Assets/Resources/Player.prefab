@@ -775,17 +775,20 @@ MonoBehaviour:
     bulletSpawnPos: {fileID: 2470258863882220247}
     curAmmo: 6
     maxAmmo: 24
+    reserveAmmo: 0
   sg:
     shootRate: 0.8
     bulletSpawnPos: {fileID: 7463322028483237731}
     curAmmo: 2
     maxAmmo: 10
+    reserveAmmo: 0
     bulletSpawnPos2: {fileID: 582498669941250032}
   rf:
     shootRate: 0.05
     bulletSpawnPos: {fileID: 8435128302673691007}
     curAmmo: 30
     maxAmmo: 90
+    reserveAmmo: 0
 --- !u!1 &3294647815059166768
 GameObject:
   m_ObjectHideFlags: 0
@@ -795,6 +798,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 405292747119150568}
+  - component: {fileID: 7921702890756878521}
+  - component: {fileID: 7529789548857023396}
   m_Layer: 0
   m_Name: Rifle
   m_TagString: Untagged
@@ -826,6 +831,45 @@ Transform:
   - {fileID: 4060691695279938445}
   m_Father: {fileID: 4694628303058299866}
   m_LocalEulerAnglesHint: {x: 0, y: 8.998, z: 0}
+--- !u!114 &7921702890756878521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3294647815059166768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PhotonUnityNetworking::Photon.Pun.PhotonView
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents:
+  - {fileID: 7529789548857023396}
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &7529789548857023396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3294647815059166768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PhotonUnityNetworking::Photon.Pun.PhotonTransformView
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!1 &3666947002087438760
 GameObject:
   m_ObjectHideFlags: 0
@@ -1015,6 +1059,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4600985685629858455}
+  - component: {fileID: 2454503937837488685}
+  - component: {fileID: 4635969686255112653}
   m_Layer: 0
   m_Name: Shotgun
   m_TagString: Untagged
@@ -1043,6 +1089,45 @@ Transform:
   - {fileID: 582498669941250032}
   m_Father: {fileID: 4694628303058299866}
   m_LocalEulerAnglesHint: {x: 0, y: 8.998, z: 0}
+--- !u!114 &2454503937837488685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4591976556155670695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PhotonUnityNetworking::Photon.Pun.PhotonTransformView
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
+--- !u!114 &4635969686255112653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4591976556155670695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PhotonUnityNetworking::Photon.Pun.PhotonView
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents:
+  - {fileID: 2454503937837488685}
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &4832926347678067936
 GameObject:
   m_ObjectHideFlags: 0
@@ -1322,6 +1407,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 739130210211623856}
+  - component: {fileID: 7773135864166334033}
+  - component: {fileID: 4641826816455049603}
   m_Layer: 0
   m_Name: Pistol
   m_TagString: Untagged
@@ -1347,6 +1434,45 @@ Transform:
   - {fileID: 2470258863882220247}
   m_Father: {fileID: 4694628303058299866}
   m_LocalEulerAnglesHint: {x: 0, y: 8.998, z: 0}
+--- !u!114 &7773135864166334033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7057610669753120336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PhotonUnityNetworking::Photon.Pun.PhotonView
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents:
+  - {fileID: 4641826816455049603}
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &4641826816455049603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7057610669753120336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PhotonUnityNetworking::Photon.Pun.PhotonTransformView
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!1 &8001689183300503781
 GameObject:
   m_ObjectHideFlags: 0
