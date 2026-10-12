@@ -715,6 +715,7 @@ MonoBehaviour:
   dead: 0
   mr: {fileID: 3196487211795294471}
   weapon: {fileID: 8263553779517833221}
+  activeGun: 
 --- !u!114 &1182008232372751239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -767,20 +768,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerWeapon
   damage: 5
-  curAmmo: 25
-  maxAmmo: 25
   bulletSpeed: 50
   bulletPrefab: {fileID: 935348177212295708, guid: 2c48c924d5d4c704fb1c33d78c08b97f, type: 3}
   ps:
     shootRate: 0.2
     bulletSpawnPos: {fileID: 2470258863882220247}
+    curAmmo: 6
+    maxAmmo: 24
   sg:
     shootRate: 0.8
     bulletSpawnPos: {fileID: 7463322028483237731}
+    curAmmo: 2
+    maxAmmo: 10
     bulletSpawnPos2: {fileID: 582498669941250032}
   rf:
     shootRate: 0.05
     bulletSpawnPos: {fileID: 8435128302673691007}
+    curAmmo: 30
+    maxAmmo: 90
 --- !u!1 &3294647815059166768
 GameObject:
   m_ObjectHideFlags: 0

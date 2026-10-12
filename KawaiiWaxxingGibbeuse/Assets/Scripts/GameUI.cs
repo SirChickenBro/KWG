@@ -30,7 +30,7 @@ public class GameUI : MonoBehaviour
         healthText.text = player.maxHP.ToString();
 
         UpdatePlayerInfoText();
-        UpdateAmmoText();
+        UpdateAmmoText(player.activeGun);
     }
 
     public void UpdateHealthBar()
@@ -39,9 +39,16 @@ public class GameUI : MonoBehaviour
         healthText.text = player.curHP.ToString();
     }
 
-    public void UpdateAmmoText()
+    public void UpdateAmmoText(string activeGun)
     {
-        ammoText.text = player.weapon.curAmmo + " / " + player.weapon.maxAmmo;
+        if(activeGun == "Pistol")
+        ammoText.text = player.weapon.ps.curAmmo + " / " + player.weapon.ps.maxAmmo;
+
+        if(activeGun == "Shotgun")
+        ammoText.text = player.weapon.sg.curAmmo + " / " + player.weapon.sg.maxAmmo;
+
+        if(activeGun == "Rifle")
+        ammoText.text = player.weapon.rf.curAmmo + " / " + player.weapon.rf.maxAmmo;
     }
 
     public void SetWinText(string winnerName)

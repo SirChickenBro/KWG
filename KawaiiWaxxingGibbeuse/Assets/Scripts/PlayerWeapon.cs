@@ -9,6 +9,9 @@ public abstract class Gun
 {
     public float shootRate;
     public Transform bulletSpawnPos;
+    public int curAmmo;
+    public int maxAmmo;
+    public int reserveAmmo;
 }
 
 [System.Serializable]
@@ -31,8 +34,8 @@ public class PlayerWeapon : MonoBehaviourPunCallbacks
 {
     [Header("Stats")]
     public int damage;
-    public int curAmmo;
-    public int maxAmmo;
+    //public int curAmmo;
+    //public int maxAmmo;
     public float bulletSpeed;
     //public float shootRate;
     private float lastShootTime;
@@ -54,10 +57,10 @@ public class PlayerWeapon : MonoBehaviourPunCallbacks
 
         if(activeGun == "Pistol")
         {
-            if (curAmmo <= 0 || Time.time - lastShootTime < ps.shootRate)
+            if (ps.curAmmo <= 0 || Time.time - lastShootTime < ps.shootRate)
                 return;
 
-            curAmmo--;
+            ps.curAmmo--;
             lastShootTime = Time.time;
 
             player.photonView.RPC("SpawnBullet", RpcTarget.All, ps.bulletSpawnPos.transform.position,
@@ -66,20 +69,12 @@ public class PlayerWeapon : MonoBehaviourPunCallbacks
         
         if(activeGun=="Shotgun")
         {
-            if (curAmmo <= 5 || Time.time - lastShootTime < sg.shootRate)
+            if (sg.curAmmo <= 2 || Time.time - lastShootTime < sg.shootRate)
                 return;
 
-            curAmmo-=6;
+            sg.curAmmo-=2;
             lastShootTime = Time.time;
 
-            player.photonView.RPC("SpawnBullet", RpcTarget.All, sg.bulletSpawnPos.transform.position,
-                Camera.main.transform.forward);
-            player.photonView.RPC("SpawnBullet", RpcTarget.All, sg.bulletSpawnPos2.transform.position,
-                Camera.main.transform.forward);
-            player.photonView.RPC("SpawnBullet", RpcTarget.All, sg.bulletSpawnPos.transform.position,
-                Camera.main.transform.forward);
-            player.photonView.RPC("SpawnBullet", RpcTarget.All, sg.bulletSpawnPos2.transform.position,
-                Camera.main.transform.forward);
             player.photonView.RPC("SpawnBullet", RpcTarget.All, sg.bulletSpawnPos.transform.position,
                 Camera.main.transform.forward);
             player.photonView.RPC("SpawnBullet", RpcTarget.All, sg.bulletSpawnPos2.transform.position,
@@ -88,17 +83,17 @@ public class PlayerWeapon : MonoBehaviourPunCallbacks
 
         if (activeGun == "Rifle")
         {
-            if (curAmmo <= 0 || Time.time - lastShootTime < rf.shootRate)
+            if (rf.curAmmo <= 0 || Time.time - lastShootTime < rf.shootRate)
                 return;
 
-            curAmmo--;
+            rf.curAmmo--;
             lastShootTime = Time.time;
 
             player.photonView.RPC("SpawnBullet", RpcTarget.All, rf.bulletSpawnPos.transform.position,
                 Camera.main.transform.forward);
         }
         
-        GameUI.instance.UpdateAmmoText();
+        GameUI.instance.UpdateAmmoText(activeGun);
     }
 
     [PunRPC]
@@ -115,8 +110,11 @@ public class PlayerWeapon : MonoBehaviourPunCallbacks
     [PunRPC]
     public void GiveAmmo(int ammoToGive)
     {
-        curAmmo = Mathf.Clamp(curAmmo + ammoToGive, 0, maxAmmo);
-        GameUI.instance.UpdateAmmoText();
+        ps.curAmmo = Mathf.Clamp(ps.curAmmo + ammoToGive, 0, ps.maxAmmo);
+        sg.curAmmo = Mathf.Clamp(sg.curAmmo + ammoToGive, 0, sg.maxAmmo);
+        rf.curAmmo = Mathf.Clamp(rf.curAmmo + ammoToGive, 0, rf.maxAmmo);
+        
+        GameUI.instance.UpdateAmmoText(player.activeGun);
     }
 
 }

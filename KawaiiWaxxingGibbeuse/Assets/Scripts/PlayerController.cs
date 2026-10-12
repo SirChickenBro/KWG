@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviourPun
     public MeshRenderer mr;
     public PlayerWeapon weapon;
 
-    private string activeGun;
+    public string activeGun;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -55,30 +55,32 @@ public class PlayerController : MonoBehaviourPun
 
         if (Input.GetKeyDown(KeyCode.Keypad1))
         {
-            _pistol.SetActive(true);
-            activeGun = "Pistol";
-
             _shotgun.SetActive(false);
             _rifle.SetActive(false);
+
+            _pistol.SetActive(true);
+            activeGun = "Pistol";
+            GameUI.instance.UpdateAmmoText(activeGun);
         }
 
         if (Input.GetKeyDown(KeyCode.Keypad2))
         {
-            
-            _shotgun.SetActive(true);
-            activeGun = "Shotgun";
-
             _rifle.SetActive(false);
             _pistol.SetActive(false);
+
+            _shotgun.SetActive(true);
+            activeGun = "Shotgun";
+            GameUI.instance.UpdateAmmoText(activeGun);
         }
 
         if (Input.GetKeyDown(KeyCode.Keypad3))
         {
-            _rifle.SetActive(true);
-            activeGun = "Rifle";
-
             _pistol.SetActive(false);
             _shotgun.SetActive(false);
+
+            _rifle.SetActive(true);
+            activeGun = "Rifle";
+            GameUI.instance.UpdateAmmoText(activeGun);
         }
 
         if (Input.GetMouseButtonDown(0))
