@@ -87,6 +87,12 @@ public class PlayerController : MonoBehaviourPun
 
         if (Input.GetMouseButtonDown(0))
             weapon.TryShoot(activeGun);
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            weapon.reloadGun(activeGun);
+            GameUI.instance.UpdateAmmoText(activeGun);
+        }
     }
 
     void Move()

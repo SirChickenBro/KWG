@@ -42,13 +42,13 @@ public class GameUI : MonoBehaviour
     public void UpdateAmmoText(string activeGun)
     {
         if(activeGun == "Pistol")
-        ammoText.text = player.weapon.ps.curAmmo + " / " + player.weapon.ps.maxAmmo;
+        ammoText.text = player.weapon.ps.mag + " / " + player.weapon.ps.curAmmo;
 
         if(activeGun == "Shotgun")
-        ammoText.text = player.weapon.sg.curAmmo + " / " + player.weapon.sg.maxAmmo;
+        ammoText.text = player.weapon.sg.mag + " / " + player.weapon.sg.curAmmo;
 
         if(activeGun == "Rifle")
-        ammoText.text = player.weapon.rf.curAmmo + " / " + player.weapon.rf.maxAmmo;
+        ammoText.text = player.weapon.rf.mag + " / " + player.weapon.rf.curAmmo;
     }
 
     public void SetWinText(string winnerName)

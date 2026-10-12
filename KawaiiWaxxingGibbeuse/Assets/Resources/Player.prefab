@@ -767,27 +767,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f543046294c6331428cbd99a377d97c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerWeapon
-  damage: 5
+  damage: 10
   bulletSpeed: 75
   bulletPrefab: {fileID: 935348177212295708, guid: 2c48c924d5d4c704fb1c33d78c08b97f, type: 3}
   ps:
     shootRate: 0.2
-    curAmmo: 6
+    curAmmo: 24
     maxAmmo: 24
-    magSize: 6
+    mag: 6
+    maxMag: 6
     bulletSpawnPos: {fileID: 2470258863882220247}
   sg:
     shootRate: 0.8
-    curAmmo: 2
+    curAmmo: 10
     maxAmmo: 10
-    magSize: 2
+    mag: 2
+    maxMag: 2
     bulletSpawnPos: {fileID: 7463322028483237731}
     bulletSpawnPos2: {fileID: 582498669941250032}
   rf:
     shootRate: 0.05
-    curAmmo: 30
+    curAmmo: 120
     maxAmmo: 120
-    magSize: 30
+    mag: 30
+    maxMag: 30
     bulletSpawnPos: {fileID: 8435128302673691007}
 --- !u!1 &3294647815059166768
 GameObject:

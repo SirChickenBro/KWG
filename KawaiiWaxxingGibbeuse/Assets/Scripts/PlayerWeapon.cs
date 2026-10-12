@@ -10,7 +10,8 @@ public abstract class Gun
     public float shootRate;
     public int curAmmo;
     public int maxAmmo;
-    public int magSize;
+    public int mag;
+    public int maxMag;
 
     public Transform bulletSpawnPos;
 }
@@ -58,10 +59,10 @@ public class PlayerWeapon : MonoBehaviourPunCallbacks
 
         if(activeGun == "Pistol")
         {
-            if (ps.curAmmo <= 0 || Time.time - lastShootTime < ps.shootRate)
+            if (ps.mag <= 0 || Time.time - lastShootTime < ps.shootRate)
                 return;
 
-            ps.curAmmo--;
+            ps.mag--;
             lastShootTime = Time.time;
 
             player.photonView.RPC("SpawnBullet", RpcTarget.All, ps.bulletSpawnPos.transform.position,
@@ -70,10 +71,10 @@ public class PlayerWeapon : MonoBehaviourPunCallbacks
 
         if (activeGun == "Shotgun")
         {
-            if (sg.curAmmo < 2 || Time.time - lastShootTime < sg.shootRate)
+            if (sg.mag < 2 || Time.time - lastShootTime < sg.shootRate)
                 return;
 
-            sg.curAmmo -= 2;
+            sg.mag -= 2;
             lastShootTime = Time.time;
 
             player.photonView.RPC("SpawnBullet", RpcTarget.All, sg.bulletSpawnPos.transform.position,
@@ -93,10 +94,10 @@ public class PlayerWeapon : MonoBehaviourPunCallbacks
 
         if (activeGun == "Rifle")
         {
-            if (rf.curAmmo <= 0 || Time.time - lastShootTime < rf.shootRate)
+            if (rf.mag <= 0 || Time.time - lastShootTime < rf.shootRate)
                 return;
 
-            rf.curAmmo--;
+            rf.mag--;
             lastShootTime = Time.time;
 
             player.photonView.RPC("SpawnBullet", RpcTarget.All, rf.bulletSpawnPos.transform.position,
@@ -128,6 +129,25 @@ public class PlayerWeapon : MonoBehaviourPunCallbacks
         GameUI.instance.UpdateAmmoText(player.activeGun);
     }
 
+    public void reloadGun(string activeGun)
+    {
+        if (activeGun == "Pistol" && ps.curAmmo >= ps.maxMag)
+        {
+            ps.curAmmo -= ps.maxMag - ps.mag;
+            ps.mag = ps.maxMag;
+        }
+        if (activeGun == "Shotgun" && sg.curAmmo >= sg.maxMag)
+        {
+            sg.curAmmo -= sg.maxMag - sg.mag;
+            sg.mag = sg.maxMag;
+        }
+        if (activeGun == "Rifle" && rf.curAmmo >= rf.maxMag)
+        {
+            rf.curAmmo -= rf.maxMag - rf.mag;
+            rf.mag = rf.maxMag;
+        }
+    }
+    
 }
 
 
